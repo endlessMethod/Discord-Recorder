@@ -65,10 +65,10 @@ client.once("ready", () => {
 
 client.on("messageCreate", async (_msg) => {
   if (_msg.author.bot) return;
-  if (!_msg.content.startsWith(prefix)) return;
+  if (!_msg.content.startsWith(process.env.PREFIX)) return;
   if (process.env.WHITELIST.indexOf(_msg.member.id) == -1) return;
 
-  let args = _msg.content.slice(prefix.length).split(" ");
+  let args = _msg.content.slice(process.env.PREFIX.length).split(" ");
   let command = args.shift().toLowerCase();
 
   switch (command) {
