@@ -47,7 +47,7 @@ function record(_guild, _id) {
   opus.pipe(out);
 
   let audio = connection.receiver.subscribe(_id, {
-    mode: "opus",
+    mode: "pcm",
     end: {
       behavior: EndBehaviorType.Manual,
     },
@@ -123,6 +123,7 @@ client.on("voiceStateUpdate", (_old, _new) => {
   // if (_new.channel == null) return
 
   if (_new.id != target) return;
+  if (_old.channelId == _new.channelId) return;
 
   if (_new.channel != undefined) {
     let connection = getVoiceConnection(_old.guild.id);
